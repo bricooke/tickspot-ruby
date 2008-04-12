@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'net/http'
 require 'xmlsimple'
+require 'activesupport'
 
 # Usage:
 # ts = Tickspot.new("company.tickspot.com", "email@example.com", "password")
