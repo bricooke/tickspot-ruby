@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'net/http'
-require 'active_support'
 require 'xmlsimple'
 
 # Usage:
