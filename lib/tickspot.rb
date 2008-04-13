@@ -13,24 +13,24 @@ class Tickspot
     @password = password
   end
 
-  def users
-    te = request("users")
-    te.users
+  def users(params={})
+    te = request("users", params)
+    te.empty? ? [] : te.users
   end
 
   def projects
     te = request("projects")
-    te.projects
+    te.empty? ? [] : te.projects
   end
 
   def tasks(project_id)
     te = request("tasks", :project_id => project_id)
-    te.tasks
+    te.empty? ? [] : te.tasks
   end
 
   def entries(start_date, end_date, params={})
     te = request("entries", params.merge({:start_date => start_date, :end_date => end_date}))
-    te.entries
+    te.empty? ? [] : te.entries 
   end
 
 private

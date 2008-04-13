@@ -7,7 +7,15 @@ class TickspotEntry
     self.method_missing(:id)
   end
   
-  def method_missing(method, *args)    
+  def empty?
+    if @hash["type"] == "array" && @hash["content"] == "\n"
+      true
+    else
+      false 
+    end
+  end
+  
+  def method_missing(method, *args)
     if @hash.has_key?(method.to_s.singularize)
       entry = @hash[method.to_s.singularize]
       if method.to_s.pluralize == method.to_s && entry.class == Array
