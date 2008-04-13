@@ -1,0 +1,7 @@
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+lib/tickspot.rb
+lib/tickspot_entry.rb
+spec/tickspot_spec.rb
