@@ -35,6 +35,11 @@ activesupport xml-simple
 
 sudo gem install tickspot-ruby
 
+== TODO:
+
+* Tests
+* Add support for the rest of the API
+
 == LICENSE:
 
 (The MIT License)
