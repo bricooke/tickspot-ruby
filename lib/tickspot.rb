@@ -49,7 +49,6 @@ private
     Net::HTTP.new(@domain).start {|http| 
       response = http.request(request)
       abort unauthorized if response.is_a? Net::HTTPUnauthorized
-      abort "You are not authorized to perform this action. " if response.is_a? Net::HTTPUnauthorized
       ret = TickspotEntry.new(XmlSimple.xml_in(response.body))
     }
     ret
