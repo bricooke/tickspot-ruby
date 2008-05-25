@@ -5,6 +5,12 @@ require 'activesupport'
 require File.dirname(__FILE__) + '/tickspot_entry'
 
 class Tickspot
+  class Unauthorized < RuntimeError
+    def message
+      "You are not authorized to perform this action.  If your login information is correct, you may be calling at admin-only action.  See http://tickspot.com/api/ for more information."
+    end
+  end
+  
   VERSION = '0.1.0'
   
   def initialize(domain, email, password)
@@ -34,10 +40,6 @@ class Tickspot
   end
 
 private
-  def unauthorized
-    "You are not authorized to perform this action.  If your login information is correct, you may be calling at admin-only action.  See http://tickspot.com/api/ for more information."
-  end
-
   def request(path, params={})
     request = Net::HTTP::Post.new("/api/" + path)
     request.form_data = {
@@ -48,7 +50,7 @@ private
     ret = nil
     Net::HTTP.new(@domain).start {|http| 
       response = http.request(request)
-      abort unauthorized if response.is_a? Net::HTTPUnauthorized
+      raise Unauthorized if response.is_a? Net::HTTPUnauthorized
       ret = TickspotEntry.new(XmlSimple.xml_in(response.body))
     }
     ret
