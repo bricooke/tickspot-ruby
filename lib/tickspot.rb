@@ -1,7 +1,8 @@
+require 'active_support'
+require 'active_support/inflector'
 require 'rubygems'
 require 'net/http'
 require 'xmlsimple'
-require 'activesupport'
 require File.dirname(__FILE__) + '/tickspot_entry'
 
 class Tickspot
